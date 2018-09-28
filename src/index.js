@@ -2,7 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Provider } from "react-redux";
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { createStore, applyMiddleware } from "redux";
+import reduxThunk from "redux-thunk";
+import reducers from "./reducers";
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import logger from 'redux-logger';
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk, logger));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <Route path="/" component={App} />
+    </Router>
+  </Provider>, document.getElementById('root'));
 registerServiceWorker();
