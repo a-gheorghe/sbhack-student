@@ -53,6 +53,34 @@
   100% { transform: scale(1); opacity: 1 }
 }
 
+@keyframes slow-in {
+  0% { transform: scale(1.05); opacity: 0 }
+  100% { transform: scale(1); opacity: 1 }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.5;
+    
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
 .header {
   display: block;
@@ -181,11 +209,13 @@
 }
 
 .code-status.error {
-  background: #ffb3b3;;
+  background: #ffb3b3;
+  color:#7c0000;
 }
 
 .code-status.success {
-  background: #a7f2e8;
+  background-color: rgba(16, 126, 122, 0.12);
+  color:#095e5b;
 }
 
 .popin {
@@ -267,6 +297,10 @@
   align-items: center;
 }
 
+.mentor__block--onboarding {
+  justify-content: center;
+}
+
 .mentor__block > img{
   width: 34px;
   height: 34px;
@@ -330,4 +364,84 @@
 
 .footer__item--right > img {
   padding: 0 0 0 10px;
+}
+
+.welcome {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.welcome__title {
+  font-family: MaaxTrial;
+  font-size: 38px;
+  font-weight: bold;
+  line-height: 1;
+  margin: 0;
+}
+
+.welcome__byline {
+  font-family: MaaxTrial;
+  font-size: 22px;
+  font-weight: 100  ;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.73;
+  letter-spacing: normal;
+  text-align: center;
+  color: #333333;
+  margin: 10px 0 0 0;
+}
+
+.illus {
+    width: 741px;
+    height: 365px;
+    margin-top:80px;
+    animation: slow-in 1.3s ease-in-out;
+}
+
+.animIn {
+  animation: fadeInLeft 1s ease-in-out;
+}
+.animIn2 {
+  animation: fadeInLeft 1s ease-in-out;
+}
+
+.fadeIn {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.next__button {
+  display: flex;
+  justify-content: center;
+  font-family: MaaxTrial;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1.1px;
+  color: #333333;
+}
+
+.next__button > img {
+  padding-left: 10px;
+  margin-top: -3px;
+}
+
+.next__button:hover {
+  cursor: pointer;
+}
+
+.toApp {
+  font-family: MaaxTrial;
+  width: 185px;
+  height: 46px;
+  border-radius: 23px;
+  background-color: #107e7a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  margin: 0 auto;
 }

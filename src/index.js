@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Onboarding from './Onboarding';
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { createStore, applyMiddleware } from "redux";
@@ -15,7 +16,10 @@ const store = createStore(reducers, {}, applyMiddleware(reduxThunk, logger));
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Route path="/" component={App} />
+      <div>
+        <Route exact path="/" component={Onboarding} />
+        <Route path="/exercise1" component={App} />
+      </div>
     </Router>
   </Provider>, document.getElementById('root'));
 registerServiceWorker();

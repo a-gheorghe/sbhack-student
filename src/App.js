@@ -18,6 +18,7 @@ import simon from './images/ana-profile-pic-copy@2x.png';
 import alert from './images/combined-shape-copy-2.svg';
 import left from './images/icon-arrowright-18-px-copy.svg';
 import right from './images/icon-arrowright-18-px.svg';
+import check from './images/check.svg';
 
 
 class App extends Component {
@@ -98,14 +99,17 @@ class App extends Component {
       )
     } else if (!error) {
       return (
-        <div className="success code-status">Nice you got it!</div>
+        <div className="success code-status">
+          <img src={check} alt="valid" />
+          <p><span>Awesome job</span>, you did it!</p>
+        </div>
       )
     }
   }
 
   render() {
     return (
-      <div className="App">
+      <div className="App fadeIn">
        <Header />
         <div>
           <div className="header wrap"> 
