@@ -4,4 +4,4 @@ import { FirebaseConfig } from "./keys.js";
 firebase.initializeApp(FirebaseConfig);
 
 const databaseRef = firebase.database().ref();
-export const valsRef = databaseRef.child("test_vals");
+export const valsRef = databaseRef.child("users").child("user1").child("exercise1").child("attempts");

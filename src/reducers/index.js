@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import answers from "./answers";
+import attempts from "./attempts";
 
 export default combineReducers({
-  answers
+  attempts
 });

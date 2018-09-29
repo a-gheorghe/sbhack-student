@@ -1,10 +1,10 @@
 import { valsRef } from "../firebase";
-import { FETCH_ANSWERS } from "./types";
+import { INCREMENT_ATTEMPTS } from "./types";
 
-export const fetchAnswers = () => async dispatch => {
+export const incrementAttempts = () => async dispatch => {
   valsRef.on("value", snapshot => {
     dispatch({
-      type: FETCH_ANSWERS,
+      type: INCREMENT_ATTEMPTS,
       payload: snapshot.val()
     });
   });
