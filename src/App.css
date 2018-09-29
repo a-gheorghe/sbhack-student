@@ -22,9 +22,10 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes snap-in {
+  0% { transform: scale(1.05); opacity: 0 }
+  50% { transform: scale(0.98); opacity: 1 }
+  100% { transform: scale(1); opacity: 1 }
 }
 
 
@@ -39,11 +40,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .inner-wrap {
-  width:875px;
+  width: 855px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .code-run-button {
@@ -77,4 +83,36 @@
 
 .code_pad {
   border:15px solid #272822;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.code-status {
+  animation: snap-in 0.3s ease-in-out;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.code-status.error {
+  background: #ffb3b3;;
+}
+
+.code-status.success {
+  background: green;
+}
+
+.popin {
+  width:100%;
+  padding-top: 20px;
+  margin: 0 0 20px 0;
+}
+
+.tip {
+  width: 100%;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: solid 1px #e2e8ee;
+  font-size: 14px;
+  line-height: 30px;
+  color:#333333;  
 }

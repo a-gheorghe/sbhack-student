@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { incrementAttempts } from "./actions";
+import posed from 'react-pose';
 import { connect } from "react-redux";
 import AceEditor from 'react-ace';
 import exercises from './codetests';
@@ -74,15 +75,16 @@ class App extends Component {
       }
   }
 
+
   PopIn = () => {
     const { error } = this.state;
     if(error === true) {
       return (
-        <div>error true</div>
+        <div className="error code-status">Sorry, we couldn’t complete your request Please try again later.</div>
       )
     } else if (!error) {
       return (
-        <div>error false</div>
+        <div className="success code-status">Nice you got it!</div>
       )
     }
   }
@@ -95,10 +97,18 @@ class App extends Component {
         </header>
         <div>
           <div className="header"> 
-            <h1>JavaScript for Beginners</h1>
-            <p>Oct 27, 2018</p>
+            <div className="inner-wrap">
+              <h1>JavaScript for Beginners</h1>
+              <p>Oct 27, 2018</p>
+            </div>
           </div>
           <div className="main__wrap">
+          <div>
+            <div className="inner-wrap">
+              <div><p>Excercise 1 — Addition</p></div>
+              <div><span>DIFFICULTY: BASIC</span> <span>VIEW LESSON</span></div>
+            </div>
+          </div>
             <div className="inner-wrap">
               <button onClick={this.onClick} className="code-run-button">RUN CODE</button>
                 <AceEditor
@@ -116,11 +126,14 @@ class App extends Component {
                   showPrintMargin={false}
                   className="code_pad"
                 />
+                <div className="popin">
+                  {this.PopIn()}
+                </div>
+                <div className="tip">
+                  <p>Tip: Around 50 percent of orangutans have fractured bones, due to falling out of trees on a regular basis.</p>
+                </div>
               </div>
           </div>
-        </div>
-        <div className="popin">
-          {this.PopIn()}
         </div>
       </div>
     );
