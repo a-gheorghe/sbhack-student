@@ -4,37 +4,50 @@ import { incrementAttempts } from "./actions";
 import { connect } from "react-redux";
 import AceEditor from 'react-ace';
 import exercises from './codetests';
-import { valsRef } from "./firebase";
+import { attemptsRef, errorsRef } from "./firebase";
 
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      result: '',
-      value: exercises.exercise1[0],
-      exercise: exercises.exercise1,
-      error: false,
-      title: 'exercise1',
-      attempts: 0,
-      errors: 0
-    }
-  }
-  componentDidMount() {
-    valsRef.set(0);
+
+  state = {
+    result: '',
+    value: exercises.exercise1[0],
+    exercise: exercises.exercise1,
+    error: 'loaded',
+    title: 'exercise1',
+    errors: 0
   }
 
-  exerChange = e => {
-    const exercise = e.target.value.toLowerCase().replace(/ /g,'');
-    this.setState({
-      title: e.target.value,
-      value: exercises[exercise],
-      exercise
-    })
+  componentDidMount() {
+    attemptsRef.set(0);
+    errorsRef.set(0);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.attempts !== this.props.attempts) {
+      attemptsRef.set(nextProps.attempts);
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextState.error) {
+      return errorsRef.set(nextProps.attempts);
+    } else {
+      return true;
+    }
+  }
+
+  // exerChange = e => {
+  //   const exercise = e.target.value.toLowerCase().replace(/ /g,'');
+  //   this.setState({
+  //     title: e.target.value,
+  //     value: exercises[exercise],
+  //     exercise
+  //   })
+  // }
   
   onChange = newValue => {
     try {
@@ -47,26 +60,34 @@ class App extends Component {
   }
   
   onClick = () => {
+    this.props.incrementAttempts();
     const { value, exercise } = this.state;
+    const result = eval(value);
+    const errorState = result !== exercise[1];
     try {
-      var result = eval(value);
       this.setState({
         result,
-        error: result === exercise[1]
+        error:errorState
       })
       } catch(e) {
         console.log(e);
       }
   }
-  
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.attempts !== this.props.attempts) {
-      valsRef.set(nextProps.attempts);
+
+  PopIn = () => {
+    const { error } = this.state;
+    if(error === true) {
+      return (
+        <div>error true</div>
+      )
+    } else if (!error) {
+      return (
+        <div>error false</div>
+      )
     }
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="App">
         <header className="App-header">
@@ -78,24 +99,29 @@ class App extends Component {
             <p>Oct 27, 2018</p>
           </div>
           <div className="main__wrap">
-            <AceEditor
-              mode="javascript"
-              theme="monokai"
-              onClick={this.onClick}
-              onChange={this.onChange}
-              name="UNIQUE_ID_OF_DIV"
-              editorProps={{$blockScrolling: false}}
-              width="855px"
-              value={this.state.value}
-              debounceChangePeriod={1000}
-            />
+            <div className="inner-wrap">
+              <button onClick={this.onClick} className="code-run-button">RUN CODE</button>
+                <AceEditor
+                  mode="javascript"
+                  theme="monokai"
+                  onClick={this.onClick}
+                  onChange={this.onChange}
+                  name="UNIQUE_ID_OF_DIV"
+                  editorProps={{$blockScrolling: false}}
+                  width="855px"
+                  height="350px"
+                  value={this.state.value}
+                  debounceChangePeriod={1000}
+                  showGutter={false}
+                  showPrintMargin={false}
+                  className="code_pad"
+                />
+              </div>
           </div>
         </div>
-        <div className="output">
-        Your output is: {this.state.result || ''}
-        <p>{this.state.error ? 'no error' : 'error'}</p>
+        <div className="popin">
+          {this.PopIn()}
         </div>
-        <button onClick={this.onClick}>click</button>
       </div>
     );
   }

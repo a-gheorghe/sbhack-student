@@ -10,7 +10,7 @@
 .App-header {
   background-color: white;
   height: 80px;
-  padding: 20px;
+  padding: 0px;
   color: black;
 }
 
@@ -41,6 +41,31 @@
   align-items: center;
 }
 
+.inner-wrap {
+  width:875px;
+  position: relative;
+}
+
+.code-run-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 135px;
+  height: 46px;
+  border-radius: 23px;
+  border: solid 2px #ffffff;
+  background: #272822;
+  color: white;
+}
+
+.code-run-button:hover {
+  background: white;
+  color: black;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
 .output {
   background:#272822;
   border-left: 5px solid #ddd;
@@ -48,4 +73,8 @@
   color: white;
   padding: 20px;
   font-family: monospace;
+}
+
+.code_pad {
+  border:15px solid #272822;
 }
