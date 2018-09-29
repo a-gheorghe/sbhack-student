@@ -1,3 +1,19 @@
+
+@font-face {
+  font-family: "MaaxTrial";
+  src: url("./fonts/MaaxTrial-Regular.otf");
+}
+@font-face {
+  font-family: "MaaxTrial";
+  src: url("./fonts/MaaxTrial-Bold.otf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "MaaxTrial";
+  src: url("./fonts/MaaxTrial-Italic.otf");
+  font-style: italic;
+}
+
 .App {
   text-align: center;
 }
@@ -7,13 +23,18 @@
   height: 80px;
 }
 
-.App-header {
-  background-color: white;
-  height: 80px;
-  padding: 0px;
-  color: black;
+.App {
+  text-align: left;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
 }
 
+.App-header {
+  width:855px;
+  margin: 0 auto;
+  padding: 52px 0 45px;
+}
 .App-title {
   font-size: 1.5em;
 }
@@ -33,7 +54,34 @@
   display: block;
   -ms-flex-pack: center;
   justify-content: center;
-  padding: 0 40px 40px;
+  padding: 0 40px 20px;
+  width: 855px;
+  margin: 0 auto;
+}
+
+.course__title {
+  font-family: MaaxTrial;
+  font-size: 26px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #333333;
+  margin: 0;
+  padding-bottom: 6px;
+}
+
+.course__date {
+  font-family: MaaxTrial;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #333333;
+  margin:0;
 }
 
 .main__wrap {
@@ -41,6 +89,18 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.exercise__info {
+  display: flex;
+  width: 855px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 53px 0 30px 0;
+}
+
+.exercise__info > p {
+  margin: 0;
 }
 
 .inner-wrap {
@@ -63,6 +123,15 @@
   border: solid 2px #ffffff;
   background: #272822;
   color: white;
+  font-family: MaaxTrial;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #ffffff;
 }
 
 .code-run-button:hover {
@@ -91,6 +160,7 @@
   animation: snap-in 0.3s ease-in-out;
   padding: 20px;
   border-radius: 8px;
+  font-size: 14px;
 }
 
 .code-status.error {
@@ -98,7 +168,7 @@
 }
 
 .code-status.success {
-  background: green;
+  background: #a7f2e8;
 }
 
 .popin {
@@ -114,5 +184,58 @@
   border: solid 1px #e2e8ee;
   font-size: 14px;
   line-height: 30px;
-  color:#333333;  
+  color:#444;
+  display:flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 2.4;
+  letter-spacing: normal;
+  color: #333333;
+}
+
+.bold {
+  font-weight: 900
+}
+
+.tip > img {
+  padding: 0 20px
+}
+
+.exercise__title {
+  font-family: MaaxTrial;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin: 0;
+}
+
+.lesson__wrap {
+  display: flex;
+}
+
+.lesson__info {
+  font-family: MaaxTrial;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1px;
+  color: #333333;
+  display: flex;
+    align-items: center;
+}
+
+.lesson__info > img {
+  padding: 0 20px;
+}
+
+.break {
+  border-right: 1px solid #ddd;
 }

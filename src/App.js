@@ -6,9 +6,14 @@ import { connect } from "react-redux";
 import AceEditor from 'react-ace';
 import exercises from './codetests';
 import { attemptsRef, errorsRef } from "./firebase";
+import Header from './components/Header'
 
 import 'brace/mode/javascript';
 import 'brace/theme/monokai';
+
+import chevDown from './images/chervon-down-copy-2.svg';
+import library from './images/group.svg';
+import tip from './images/tips-36-px.svg';
 
 
 class App extends Component {
@@ -63,6 +68,8 @@ class App extends Component {
   onClick = () => {
     this.props.incrementAttempts();
     const { value, exercise } = this.state;
+    // dangerous, but just for POC
+    // would move to sandboxed iframe in future
     const result = eval(value);
     const errorState = result !== exercise[1];
     try {
@@ -80,7 +87,7 @@ class App extends Component {
     const { error } = this.state;
     if(error === true) {
       return (
-        <div className="error code-status">Sorry, we couldn’t complete your request Please try again later.</div>
+        <div className="error code-status">Your output was {this.state.result || '...nothing'}, it did not meet the expected output.</div>
       )
     } else if (!error) {
       return (
@@ -92,22 +99,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">CLC Student</h1>
-        </header>
+       <Header />
         <div>
           <div className="header"> 
-            <div className="inner-wrap">
-              <h1>JavaScript for Beginners</h1>
-              <p>Oct 27, 2018</p>
-            </div>
+            <h1 className="course__title">JavaScript for Beginners</h1>
+            <p className="course__date">Oct 27, 2018</p>
           </div>
           <div className="main__wrap">
-          <div>
-            <div className="inner-wrap">
-              <div><p>Excercise 1 — Addition</p></div>
-              <div><span>DIFFICULTY: BASIC</span> <span>VIEW LESSON</span></div>
-            </div>
+          <div className="exercise__info">
+            <div><p className="exercise__title">Excercise 1 — Addition</p></div>
+            <div className="lesson__wrap"><span className="lesson__info">DIFFICULTY: BASIC <img alt="chevron down" src={chevDown} /></span><span className="break"></span><span className="lesson__info"><img alt="chevron down" src={library} />VIEW LESSON</span></div>
           </div>
             <div className="inner-wrap">
               <button onClick={this.onClick} className="code-run-button">RUN CODE</button>
@@ -130,7 +131,8 @@ class App extends Component {
                   {this.PopIn()}
                 </div>
                 <div className="tip">
-                  <p>Tip: Around 50 percent of orangutans have fractured bones, due to falling out of trees on a regular basis.</p>
+                  <img alt="tip" src={tip} />
+                  <p><span className="bold">Tip:</span> Around 50 percent of orangutans have fractured bones, due to falling out of trees on a regular basis.</p>
                 </div>
               </div>
           </div>
