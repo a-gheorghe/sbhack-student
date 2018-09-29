@@ -24,33 +24,47 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    //this.props.incrementAttempts();
     valsRef.set(0);
   }
 
   exerChange = e => {
+    const exercise = e.target.value.toLowerCase().replace(/ /g,'');
     this.setState({
       title: e.target.value,
-      value: exercises[e.target.value.toLowerCase().replace(/ /g,'')],
-      exercise: e.target.value.toLowerCase().replace(/ /g,'')
+      value: exercises[exercise],
+      exercise
     })
   }
   
   onChange = newValue => {
-    console.log(this.state.exercise);
     try {
-      var result = eval(newValue);
       this.setState({
         value: newValue,
-        result,
-        error: result === this.state.exercise[1]
       })
       } catch(e) {
         console.log(e);
       }
   }
   
+  onClick = () => {
+    const { value, exercise } = this.state;
+    try {
+      var result = eval(value);
+      this.setState({
+        result,
+        error: result === exercise[1]
+      })
+      } catch(e) {
+        console.log(e);
+      }
+  }
   
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.attempts !== this.props.attempts) {
+      valsRef.set(nextProps.attempts);
+    }
+  }
+
   render() {
     console.log(this.props)
     return (
@@ -60,31 +74,28 @@ class App extends Component {
         </header>
         <div>
           <div className="header"> 
-            <h1>{this.state.title}</h1>
-            <select onChange={this.exerChange}>
-              <option>Exercise 1</option>
-              <option>Exercise 2</option>
-              <option>Exercise 3</option>
-            </select>
+            <h1>JavaScript for Beginners</h1>
+            <p>Oct 27, 2018</p>
           </div>
           <div className="main__wrap">
             <AceEditor
               mode="javascript"
               theme="monokai"
+              onClick={this.onClick}
               onChange={this.onChange}
               name="UNIQUE_ID_OF_DIV"
-              editorProps={{$blockScrolling: true}}
-              width="600px"
+              editorProps={{$blockScrolling: false}}
+              width="855px"
               value={this.state.value}
               debounceChangePeriod={1000}
             />
-            <div className="output">
-              Your output is: {this.state.result || ''}
-              <p>{this.state.error ? 'no error' : 'error'}</p>
-            </div>
           </div>
-          <button onClick={this.props.incrementAttempts}>click</button>
         </div>
+        <div className="output">
+        Your output is: {this.state.result || ''}
+        <p>{this.state.error ? 'no error' : 'error'}</p>
+        </div>
+        <button onClick={this.onClick}>click</button>
       </div>
     );
   }
