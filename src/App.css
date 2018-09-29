@@ -31,10 +31,14 @@
 }
 
 .App-header {
-  width:855px;
   margin: 0 auto;
-  padding: 52px 0 45px;
+  padding: 52px 0 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .App-title {
   font-size: 1.5em;
 }
@@ -54,14 +58,15 @@
   display: block;
   -ms-flex-pack: center;
   justify-content: center;
-  padding: 0 40px 20px;
-  width: 855px;
+  padding: 0 0px 36px;
   margin: 0 auto;
+  display: flex;
+    justify-content: space-between;
 }
 
 .course__title {
   font-family: MaaxTrial;
-  font-size: 26px;
+  font-size: 32px;
   font-weight: bold;
   font-style: normal;
   font-stretch: normal;
@@ -93,19 +98,22 @@
 
 .exercise__info {
   display: flex;
-  width: 855px;
   justify-content: space-between;
   align-items: center;
-  padding: 53px 0 30px 0;
+  padding: 24px 0 61px 0;
+  border-top: 1px solid #eee;
 }
 
 .exercise__info > p {
   margin: 0;
 }
 
-.inner-wrap {
+.wrap {
   width: 855px;
   position: relative;
+}
+
+.inner-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -161,6 +169,15 @@
   padding: 20px;
   border-radius: 8px;
   font-size: 14px;
+  display: flex;
+}
+
+.code-status span {
+  font-weight: 900;
+}
+
+.code-status > img {
+  padding-right: 10px;
 }
 
 .code-status.error {
@@ -238,4 +255,79 @@
 
 .break {
   border-right: 1px solid #ddd;
+}
+
+.instructor {
+  width: 110px;
+  height: 24px;
+}
+
+.mentor__block {
+  display:flex;
+  align-items: center;
+}
+
+.mentor__block > img{
+  width: 34px;
+  height: 34px;
+  padding-right: 10px;
+}
+
+.mentor__block > p {
+  font-family: MaaxTrial;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.78;
+  letter-spacing: normal;
+  color: #333333;
+}
+
+.mentor__block span {
+  font-weight:bold
+}
+
+.footer__nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 80px 0 80px;
+}
+
+.footer__item {
+  display:flex;
+  align-items: center;
+}
+
+.footer__item--left {
+  width: 138px;
+  height: 19px;
+  font-family: MaaxTrial;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1.1px;
+  color: #757575;
+}
+
+.footer__item--left > img {
+  padding: 0 10px 0 0;
+}
+
+.footer__item--right {
+  font-family: MaaxTrial;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1.1px;
+  color: #333333;
+}
+
+.footer__item--right > img {
+  padding: 0 0 0 10px;
 }

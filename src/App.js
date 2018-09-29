@@ -14,6 +14,10 @@ import 'brace/theme/monokai';
 import chevDown from './images/chervon-down-copy-2.svg';
 import library from './images/group.svg';
 import tip from './images/tips-36-px.svg';
+import simon from './images/ana-profile-pic-copy@2x.png';
+import alert from './images/combined-shape-copy-2.svg';
+import left from './images/icon-arrowright-18-px-copy.svg';
+import right from './images/icon-arrowright-18-px.svg';
 
 
 class App extends Component {
@@ -87,7 +91,10 @@ class App extends Component {
     const { error } = this.state;
     if(error === true) {
       return (
-        <div className="error code-status">Your output was {this.state.result || '...nothing'}, it did not meet the expected output.</div>
+        <div className="error code-status">
+          <img src={alert} alt="no valid" />
+          <p><span>Oops</span>, your code is missing something. Please check line 5.</p>
+        </div>
       )
     } else if (!error) {
       return (
@@ -101,31 +108,40 @@ class App extends Component {
       <div className="App">
        <Header />
         <div>
-          <div className="header"> 
-            <h1 className="course__title">JavaScript for Beginners</h1>
-            <p className="course__date">Oct 27, 2018</p>
+          <div className="header wrap"> 
+            <div>  
+              <h1 className="course__title">Hi, Holly</h1>
+              <p className="course__date">You’re learning JavaScript for Beginners</p>
+            </div>
+            <div className="mentor__block">
+              <img src={simon} alt="mentor" />
+              <p>Your mentor is <span>Simon</span></p>
+            </div>
           </div>
           <div className="main__wrap">
-          <div className="exercise__info">
+          <div className="exercise__info wrap">
             <div><p className="exercise__title">Excercise 1 — Addition</p></div>
             <div className="lesson__wrap"><span className="lesson__info">DIFFICULTY: BASIC <img alt="chevron down" src={chevDown} /></span><span className="break"></span><span className="lesson__info"><img alt="chevron down" src={library} />VIEW LESSON</span></div>
           </div>
-            <div className="inner-wrap">
+            <div className="inner-wrap wrap">
               <button onClick={this.onClick} className="code-run-button">RUN CODE</button>
                 <AceEditor
                   mode="javascript"
                   theme="monokai"
                   onClick={this.onClick}
                   onChange={this.onChange}
-                  name="UNIQUE_ID_OF_DIV"
+                  showGutter={true}
                   editorProps={{$blockScrolling: false}}
                   width="855px"
                   height="350px"
                   value={this.state.value}
                   debounceChangePeriod={1000}
-                  showGutter={false}
+                  showGutter={true}
                   showPrintMargin={false}
                   className="code_pad"
+                  setOptions={{
+                    showLineNumbers: true
+                  }}
                 />
                 <div className="popin">
                   {this.PopIn()}
@@ -134,6 +150,10 @@ class App extends Component {
                   <img alt="tip" src={tip} />
                   <p><span className="bold">Tip:</span> Around 50 percent of orangutans have fractured bones, due to falling out of trees on a regular basis.</p>
                 </div>
+              </div>
+              <div className="wrap footer__nav">
+                <div className="footer__item footer__item--left"><img src={left} alt="left arrow" />INTRODUCTION</div>
+                <div className="footer__item footer__item--right">EXCERCISE 2: SUBTRACTION<img src={right} alt="left arrow" /></div>
               </div>
           </div>
         </div>
