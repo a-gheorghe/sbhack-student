@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import simon from './images/ana-profile-pic-copy@2x.png';
 import illus from './images/group-3@2x.png';
 import next from './images/icon-arrowright-18-px.svg';
+import lessonGif from './images/Lesson.gif';
+import difficulty from './images/difficulty.gif';
 
 export default class Onboarding extends Component {
   state = {
@@ -13,7 +15,7 @@ export default class Onboarding extends Component {
   componentDidMount() {
     setTimeout(() => { 
       this.setState({ currentSlide: 1 })
-    }, 3000)
+    }, 5000)
   }
 
   renderSlide = () => {
@@ -32,20 +34,28 @@ export default class Onboarding extends Component {
       )
     } else if(currentSlide === 1) {
       return (
-        <div className="animIn">
-          <h1 className="welcome__title">Learn at your own pace!</h1>
-          <p className="welcome__byline">You can review the lesson and examples at anytime.</p>
-          <div className="next__button">
-            <a onClick={() => this.setState({currentSlide: 2})}>NEXT</a> <img src={next} alt="right arrow" />
+        <div>
+          <div className="animIn">
+            <h1 className="welcome__title">Learn at your own pace!</h1>
+            <p className="welcome__byline">You can review the lesson and examples at anytime.</p>
+          </div>
+          <div>
+          <img src={lessonGif} alt="lesson1" className="gif" />
+            <div className="next__button">
+              <a onClick={() => this.setState({currentSlide: 2})}>NEXT</a> <img src={next} alt="right arrow" />
+            </div>
           </div>
         </div>
       )
     } else if(currentSlide === 2) {
       return (
         <div>
-          <div className="animIn">
-            <h1 className="welcome__title">Feeling the challenge?</h1>
-            <p className="welcome__byline">Adjust difficulty level to how you like it.</p>
+          <div>
+            <div className="animIn">
+              <h1 className="welcome__title">Feeling the challenge?</h1>
+              <p className="welcome__byline">Adjust difficulty level to how you like it.</p>
+            </div>
+            <img src={difficulty} alt="lesson1" className="gif" />
             <Link className="toApp" to='/exercise1'>LET'S START</Link>
           </div>
         </div>
